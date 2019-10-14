@@ -51,4 +51,4 @@ class ChildHtmlElement extends HTMLElement {
       }
   }
 
-  window.customElements.define('custom-html-element', ChildHtmlElement);
+  window.customElements.define('custom-element-html', ChildHtmlElement);

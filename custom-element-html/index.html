@@ -2,17 +2,17 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Test harness for Child HTML customer element</title>
+  <title>Test harness for custom-element-html</title>
  
 </head>
 
 <body>
-  <h1>Test harness for Child HTML customer element</h1>
+  <h1>Test harness for custom-element-html</h1>
   <input type="button" onclick="sendTextToComponent()" value="broadcast">
   <h2>customer element</h2>
   
   <script src="main.js"></script>
-  <custom-html-element text="initial text" id="custom1" onHelloEvt="receiveMessage($evt)" ></custom-html-element>
+  <custom-element-html text="initial text" id="custom1" onHelloEvt="receiveMessage($evt)" ></custom-element-html>
   <div id='messages'>No messages</div>
   <script>
       var count = 0;

@@ -34,7 +34,7 @@ export class AppModule {
     const ngCustomElement = createCustomElement(MyCustomComponentComponent, { injector });
 
     // define in browser registry
-    let elementTagName = 'ng-el2';
+    let elementTagName = 'custom-element-angular9';
 
     // define in browser registry
     if (customElements.get(elementTagName)) {

@@ -1,9 +1,9 @@
 {
-  "name": "child-angular-app",
+  "name": "custom-element-angular8",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npm run build && serve -l 5003 dist/child-angular-app",
+    "start": "npm run build && serve -l 5001 dist/custom-element-angular8",
     "build": "ng build --prod --output-hashing none --single-bundle true",
     "test": "ng test",
     "lint": "ng lint",

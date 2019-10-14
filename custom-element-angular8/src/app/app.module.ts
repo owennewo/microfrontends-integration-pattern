@@ -33,7 +33,7 @@ export class AppModule {
     // create custom elements from angular components
     const ngCustomElement = createCustomElement(MyCustomComponentComponent, { injector });
 
-    let elementTagName = 'ng-el';
+    let elementTagName = 'custom-element-angular8';
 
     // define in browser registry
     if (customElements.get(elementTagName)) {

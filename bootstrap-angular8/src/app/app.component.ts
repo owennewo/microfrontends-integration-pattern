@@ -14,26 +14,26 @@ export class AppComponent {
   // host = 'localhost';
 
   scripts = {
-    'ng-component-1': {
+    'custom-element-angular8': {
       'url': `http://${this.host}:5001/main.js`,
-      'customElementName': 'ng-el',
-      'containerElementId': 'ng-container1'
+      'customElementName': 'custom-element-angular8',
+      'containerElementId': 'container-angular8'
     },
     
-    'react-component': {
+    'custom-element-react': {
       'url': `http://${this.host}:5002/main.js`,
-      'customElementName': 'react-el',
-      'containerElementId': 'react-container'
+      'customElementName': 'custom-element-react',
+      'containerElementId': 'container-react'
     },
-    'ng-component-2': {
+    'custom-element-angular9': {
       'url': `http://${this.host}:5003/main.js`,
-      'customElementName': 'ng-el2',
-      'containerElementId': 'ng-container2'
+      'customElementName': 'custom-element-angular9',
+      'containerElementId': 'container-angular9'
     },
-    'custom-html-element': {
+    'custom-element-html': {
       'url': `http://${this.host}:5004/main.js`,
-      'customElementName': 'custom-html-element',
-      'containerElementId': 'custom-html-container'
+      'customElementName': 'custom-element-html',
+      'containerElementId': 'container-html'
     }
   };
 
