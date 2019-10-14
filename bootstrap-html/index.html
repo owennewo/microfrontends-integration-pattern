@@ -15,7 +15,7 @@
     }
     .card-body {
       width: 100%;
-      height: 350px;
+      height: 125px;
     }
     .logo {
       height: 200px;
@@ -32,10 +32,16 @@
     .console p {
       font-size: 0.8em;
     }
+    .float-right {
+      float: right;
+    }
+    .form-group input {
+      width: 300px;
+    }
   </style>
 </head>
 
-<body onload="tellComponents()">
+<body>
 
   
   <div class="container">
@@ -51,29 +57,40 @@
           <div class="alert alert-primary" role="alert">
             <h4 class="alert-heading">Text to send</h4>
             <div class="form-group">
-              <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" id="yourText" aria-describedby="yourText" placeholder="text" value="Lorem ipsum" />
+              <button type="submit" class="btn btn-primary float-right" onclick="tellComponents()">Send</button>  
+              <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" id="textToSend" aria-describedby="yourText" placeholder="text" value="Lorem ipsum" />
               <small id="emailHelp" class="form-text text-muted">Enter you want to send to components.</small>
+              
             </div>
-            <button type="submit" class="btn btn-primary" onclick="tellComponents()">Broadcast components</button>
+            
           </div>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <div class="card">
-          <h5 class="card-header">Angular App</h5>
-          <div class="card-body" id="ng-container"></div>
+          <h5 class="card-header">
+            Angular App 
+            <button type="submit" class="btn btn-primary float-right" onclick="loadScriptById('ng-component-1')">load</button>
+          </h5>
+          <div class="card-body" id="ng-container1"></div>
         </div>
       </div>
       <div class="col">
         <div class="card">
-          <h5 class="card-header">Angular App2</h5>
-          <div class="card-body" id="ng2-container"></div>
+          <h5 class="card-header">
+              Angular App2
+              <button type="submit" class="btn btn-primary float-right" onclick="loadScriptById('ng-component-2')">load</button>
+          </h5>
+          <div class="card-body" id="ng-container2"></div>
         </div>
       </div>
       <div class="col">
         <div class="card">
-          <h5 class="card-header">React App</h5>
+          <h5 class="card-header">
+            React App
+            <button type="submit" class="btn btn-primary float-right" onclick="loadScriptById('react-component')">load</button>
+          </h5>
           <div class="card-body" id="react-container"></div>
         </div>
       </div>
@@ -89,42 +106,77 @@
   </div>
 
   <script>
+
+    host = '192.168.1.27';
+      // host = 'localhost';
+
+      scripts = {
+        'ng-component-1': {
+          'url': "http://" + host + ":5001/main.js",
+          'customElementName': 'ng-el',
+          'containerElementId': 'ng-container1'
+        },
+        
+        'react-component': {
+          'url': "http://" + host + ":5002/main.js",
+          'customElementName': 'react-el',
+          'containerElementId': 'react-container'
+        },
+        'ng-component-2': {
+          'url': "http://" + host + ":5003/main.js",
+          'customElementName': 'ng-el2',
+          'containerElementId': 'ng-container2'
+        }
+      };
+
+  function loadScriptById(scriptId) {
+    var script = scripts[scriptId];
+    loadScript(script);
+  }
+
+  function getTextToSend() {
+    return document.getElementById('textToSend').value;
+  }
+
+  function loadScript(script) {
+      console.log("load script:" + script.url)
+      
+      // grab the container
+      const container =  document.getElementById(script.containerElementId)
+      
+      // clear out all children
+      while (container.firstChild) container.removeChild(container.firstChild);
+      
+
+      // add script
+      const scriptElement = document.createElement('script');   
+      scriptElement.src = script.url;
+      container.appendChild(scriptElement);
+
+      
+      // add custom element
+      const customElement = document.createElement(script.customElementName);
+      customElement.setAttribute('text', getTextToSend());
+      customElement.addEventListener('onHelloEvt', function() { helloEvent(script.customElementName) });
+      script.customElement = customElement;
+      
+      container.appendChild(customElement);
+  }
+  
+
+
     function tellComponents() {
-
-      const text = document.getElementById('yourText').value;
-
-      // Child React App Element
-      const reactEl = document.createElement('react-el');
-      reactEl.setAttribute('text', text);
-      reactEl.setAttribute('onHelloEvt', 'onHelloEvt');
-      reactEl.addEventListener('onHelloEvt', (e) => helloEvent('React'));
-      const reactElContainer =  document.getElementById('react-container')
-      if (reactElContainer.children.length > 0) {
-        reactElContainer.removeChild(reactElContainer.children[0]);
+      var count = 0;
+      const textToSend = getTextToSend();
+      for (let script in this.scripts) {
+      console.log(script);
+      if (this.scripts[script].customElement) {
+        count++;
+        this.scripts[script].customElement.setAttribute('text', textToSend);
       }
-      reactElContainer.appendChild(reactEl);
-
-      //Child Angular child element
-      const ngEl = document.createElement('ng-el');
-      ngEl.setAttribute('text', text);
-      ngEl.addEventListener('helloEvt', (e) => helloEvent('Angular'));
-      const ngElContainer =  document.getElementById('ng-container')
-      if (ngElContainer.children.length > 0) {
-        ngElContainer.removeChild(ngElContainer.children[0]);
-      }
-      ngElContainer.appendChild(ngEl);
-      logMessage('You', `Text -> ${text}`)
-
-      //Child Angular2 child element
-      const ngEl2 = document.createElement('ng-el2');
-      ngEl2.setAttribute('text', text);
-      ngEl2.addEventListener('helloEvt', (e) => helloEvent('Angular2'));
-      const ng2ElContainer =  document.getElementById('ng2-container')
-      if (ng2ElContainer.children.length > 0) {
-        ng2ElContainer.removeChild(ng2ElContainer.children[0]);
-      }
-      ng2ElContainer.appendChild(ngEl2);
-      logMessage('You', `Text -> ${text}`)
+    }
+      
+      logMessage('You', 'Text -> ' + textToSend + " to " + count + " components");
     }
 
     function helloEvent(who) {
@@ -132,14 +184,12 @@
     }
     function logMessage(source, msg) {
       const msgContainer = document.getElementById('messages');
-      msgContainer.innerHTML += `<p><strong>${source}</strong> sent ${msg}`;
+      msgContainer.innerHTML += "<p><strong>" + source + "</strong> sent " + msg;
     }
   </script>
 
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.0.0/webcomponents-loader.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.9.1/zone.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.2.10/custom-elements-es5-adapter.js"></script>
-  <script src="http://localhost:5001/main.js"></script>
-  <script src="http://localhost:5002/main.js"></script>
-  <script src="http://localhost:5003/main.js"></script>
 </body>
 </html>

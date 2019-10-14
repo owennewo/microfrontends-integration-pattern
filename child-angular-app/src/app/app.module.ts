@@ -33,9 +33,15 @@ export class AppModule {
     // create custom elements from angular components
     const ngCustomElement = createCustomElement(MyCustomComponentComponent, { injector });
 
-    // define in browser registry
-    customElements.define('ng-el', ngCustomElement);
+    let elementTagName = 'ng-el';
 
+    // define in browser registry
+    if (customElements.get(elementTagName)) {
+      // TODO: Investigate why module gets loaded twice from bootstrap-html, perhaps we should call upgrade
+      console.warn("custom element '" + elementTagName + "' has already been defined, skipping");
+    } else {
+      customElements.define(elementTagName, ngCustomElement);
+    }
   }
 
 }

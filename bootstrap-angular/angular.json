@@ -61,17 +61,23 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "es5": {
+              "tsConfig": "./tsconfig.es5.json"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bootstrap-angular:build"
+            "browserTarget": "bootstrap-angular:build",
           },
           "configurations": {
             "production": {
               "browserTarget": "bootstrap-angular:build:production"
+            },
+            "es5": {
+              "browserTarget": "bootstrap-angular:build:es5"
             }
           }
         },

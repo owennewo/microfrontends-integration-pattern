@@ -4,6 +4,8 @@ This is a forked version of https://github.com/dpizzuto/microfrontends-integrati
 
 My modifications aim to 
  - [done] show a bootstrap project that is angular based, the original was 'raw html'
- - [todo] check whether custom elements works in IE11 (i.e. ensure polyfill works correct)
+ - [done] check whether custom elements works in IE11 (i.e. ensure polyfill works correct)
+   - bootstrap-angular app in needs to be started with ng serve --configuration=es5 (because of ng8 differential loading)
+ - [todo] add html client
  - [todo] see whether different angular versions can be used in the same bootstrap
  - [todo] see whether there are any problems with this approach with ivy (angular 9)

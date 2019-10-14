@@ -10,7 +10,7 @@
   }
   .card-body {
     width: 100%;
-    height: 350px;
+    height: 125px;
   }
   .logo {
     height: 200px;
@@ -26,4 +26,8 @@
   }
   .console p {
     font-size: 0.8em;
+  }
+
+  .form-group input {
+      width: 300px;
   }
