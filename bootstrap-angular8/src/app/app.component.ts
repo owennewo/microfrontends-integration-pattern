@@ -34,6 +34,11 @@ export class AppComponent {
       'url': `http://${this.host}:5004/main.js`,
       'customElementName': 'custom-element-html',
       'containerElementId': 'container-html'
+    },
+    'custom-element-angularjs': {
+      'url': `http://${this.host}:5005/main.js`,
+      'customElementName': 'custom-element-angularjs',
+      'containerElementId': 'container-angularjs'
     }
   };
 
