@@ -67,6 +67,12 @@
       </div>
       <div class="col">
         <div class="card">
+          <h5 class="card-header">Angular App2</h5>
+          <div class="card-body" id="ng2-container"></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
           <h5 class="card-header">React App</h5>
           <div class="card-body" id="react-container"></div>
         </div>
@@ -108,6 +114,17 @@
       }
       ngElContainer.appendChild(ngEl);
       logMessage('You', `Text -> ${text}`)
+
+      //Child Angular2 child element
+      const ngEl2 = document.createElement('ng-el2');
+      ngEl2.setAttribute('text', text);
+      ngEl2.addEventListener('helloEvt', (e) => helloEvent('Angular2'));
+      const ng2ElContainer =  document.getElementById('ng2-container')
+      if (ng2ElContainer.children.length > 0) {
+        ng2ElContainer.removeChild(ng2ElContainer.children[0]);
+      }
+      ng2ElContainer.appendChild(ngEl2);
+      logMessage('You', `Text -> ${text}`)
     }
 
     function helloEvent(who) {
@@ -121,7 +138,8 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.9.1/zone.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.2.10/custom-elements-es5-adapter.js"></script>
-  <script src="http://localhost:8081/main.js"></script>
-  <script src="http://localhost:8082/main.js"></script>
+  <script src="http://localhost:5001/main.js"></script>
+  <script src="http://localhost:5002/main.js"></script>
+  <script src="http://localhost:5003/main.js"></script>
 </body>
 </html>
