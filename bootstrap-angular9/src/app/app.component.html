@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">Microfrontends using Web Components and Integration pattern</span>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+        <div class="alert alert-primary" role="alert">
+          <h4 class="alert-heading">Text to send</h4>
+          <div class="form-group">
+              <button type="submit" class="btn btn-primary float-right" (click)="tellComponents()">Send</button>  
+            <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" id="yourText" aria-describedby="yourText" placeholder="text" [(ngModel)]="textToSend" />
+            
+            <small id="emailHelp" class="form-text text-muted">Enter you want to send to components.</small>
+            
+          </div>
+          
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let script of scripts | keyvalue" class="col">
+      <div class="card">
+        <h5 class="card-header">
+            {{script.key}}
+            <button type="submit" class="btn btn-primary btn-load" (click)="loadScript(script.value)">load</button>
+        </h5>
+        <div class="card-body" [id]="script.value.containerElementId">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row console">
+    <div class="col">
+        <div class="alert alert-dark" role="alert">
+          <h4 class="alert-heading">Console</h4>
+          <div id="messages"></div>
+        </div>
+    </div>
+  </div>
+</div>

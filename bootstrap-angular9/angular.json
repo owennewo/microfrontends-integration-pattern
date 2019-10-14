@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "bootstrap-angular8": {
+    "bootstrap-angular9": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/bootstrap-angular8",
+            "outputPath": "dist/bootstrap-angular9",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -70,21 +70,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bootstrap-angular8:build",
+            "browserTarget": "bootstrap-angular9:build",
           },
           "configurations": {
             "production": {
-              "browserTarget": "bootstrap-angular8:build:production"
+              "browserTarget": "bootstrap-angular9:build:production"
             },
             "es5": {
-              "browserTarget": "bootstrap-angular8:build:es5"
+              "browserTarget": "bootstrap-angular9:build:es5"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "bootstrap-angular8:build"
+            "browserTarget": "bootstrap-angular9:build"
           }
         },
         "test": {
@@ -121,15 +121,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "bootstrap-angular8:serve"
+            "devServerTarget": "bootstrap-angular9:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "bootstrap-angular8:serve:production"
+              "devServerTarget": "bootstrap-angular9:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "bootstrap-angular8"
+  "defaultProject": "bootstrap-angular9"
 }

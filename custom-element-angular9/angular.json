@@ -45,8 +45,7 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [
-              ]
+              "budgets": []
             }
           }
         },
@@ -110,6 +109,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "custom-element-angular9"
+    }
+  },
+  "defaultProject": "custom-element-angular9",
+  "cli": {
+    "analytics": false
+  }
 }
