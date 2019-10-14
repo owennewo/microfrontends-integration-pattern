@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Test harness for Child HTML customer element</title>
+ 
+</head>
+
+<body>
+  <h1>Test harness for Child HTML customer element</h1>
+  <input type="button" onclick="sendTextToComponent()" value="broadcast">
+  <h2>customer element</h2>
+  
+  <script src="main.js"></script>
+  <custom-html-element text="initial text" id="custom1" onHelloEvt="receiveMessage($evt)" ></custom-html-element>
+  <div id='messages'>No messages</div>
+  <script>
+      var count = 0;
+      function sendTextToComponent() {
+        count ++;
+        var customElement = document.getElementById('custom1');
+        customElement.setAttribute('text', 'update text: ' + count);
+      }
+  
+      
+      function helloEvent(source) {
+       
+        const msgContainer = document.getElementById('messages');
+        msgContainer.innerHTML += "<p><strong>" + source + "</strong> sent message";
+      }
+      
+      var customElement = document.getElementById('custom1');
+      customElement.addEventListener('onHelloEvt', function() {
+        console.log("event received")
+        helloEvent('custom1') 
+      });
+     
+  
+    </script> 
+</body>
+</html>

@@ -95,6 +95,16 @@
         </div>
       </div>
     </div>
+    <div class="col">
+        <div class="card">
+          <h5 class="card-header">
+            Html App
+            <button type="submit" class="btn btn-primary float-right" onclick="loadScriptById('custom-html-element')">load</button>
+          </h5>
+          <div class="card-body" id="custom-html-container"></div>
+        </div>
+      </div>
+    </div>
     <div class="row console">
       <div class="col">
           <div class="alert alert-dark" role="alert">
@@ -126,6 +136,11 @@
           'url': "http://" + host + ":5003/main.js",
           'customElementName': 'ng-el2',
           'containerElementId': 'ng-container2'
+        },
+        'custom-html-element': {
+          'url': "http://" + host + ":5004/main.js",
+          'customElementName': 'custom-html-element',
+          'containerElementId': 'custom-html-container'
         }
       };
 
@@ -176,7 +191,7 @@
       }
     }
       
-      logMessage('You', 'Text -> ' + textToSend + " to " + count + " components");
+      logMessage('bootstrap-html', 'Text -> ' + textToSend + " to " + count + " components");
     }
 
     function helloEvent(who) {

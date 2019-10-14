@@ -29,6 +29,11 @@ export class AppComponent {
       'url': `http://${this.host}:5003/main.js`,
       'customElementName': 'ng-el2',
       'containerElementId': 'ng-container2'
+    },
+    'custom-html-element': {
+      'url': `http://${this.host}:5004/main.js`,
+      'customElementName': 'custom-html-element',
+      'containerElementId': 'custom-html-container'
     }
   };
 
